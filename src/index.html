@@ -1,10 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Gift Advisor</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gift Advisor</title>
+  <!-- Fancy Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Playfair Display", serif;
+      background: linear-gradient(135deg, #faf5f0, #f9e4ec);
+      color: #3e3e3e;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3.5em;
+      margin-top: 40px;
+      color: #7a934f; /* olive green */
+      font-family: "Great Vibes", cursive;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Falling petals and leaves */
+    .petal {
+      position: fixed;
+      top: -10vh;
+      width: 20px;
+      height: 20px;
+      border-radius: 50% 70% 50% 70%;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin: 60px 0;
+      z-index: 2;
+      position: relative;
+    }
+
+    .gift-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      font-size: 1.3em;
+      color: #d87093; /* baby pink */
+      font-weight: bold;
+      transition: transform 0.4s ease, color 0.4s ease;
+    }
+
+    .gift-btn img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      border: 3px solid #556b2f;
+    }
+
+    .gift-btn:hover {
+      transform: scale(1.15) rotate(-2deg);
+      color: #556b2f;
+    }
+
+    .about-us {
+      background-color: rgba(249, 228, 236, 0.9);
+      padding: 40px;
+      margin-top: 60px;
+      border-top: 3px dashed #556b2f;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .about-us.visible {
+      opacity: 1;
+    }
+
+    .about-us h2 {
+      font-family: "Great Vibes", cursive;
+      font-size: 2.5em;
+      color: #556b2f;
+    }
+
+    .founders {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .founder {
+      width: 250px;
+      text-align: center;
+    }
+
+    .founder img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #d87093;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .founder h3 {
+      margin: 10px 0 5px;
+      color: #556b2f;
+      font-size: 1.4em;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to Gift Advisor 🎁</h1>
-    <p>We will help you choose the perfect gift!</p>
+  <h1>⋆｡⋆୨୧˚ Welcome to Gift Advisor｡⋆୨୧˚</h1>
+
+  <div class="button-container">
+    <a href="#" class="gift-btn">
+      <img src="images/birthday-button.png" alt="Birthday">
+      <span>୨୧✧˚⋆˚Birthday୨୧🍰✧˚♡˚</span>
+    </a>
+    <a href="#" class="gift-btn">
+      <img src="images/mothersday-button.png" alt="Mother's Day">
+      <span>✧˚｡♡˚💐Mother's Day✧｡♡˚💐</span>
+    </a>
+    <a href="#" class="gift-btn">
+      <img src="images/anniversary-button.png" alt="Anniversary">
+      <span>⋆.🪩•Anniversary°🥂.•</span>
+    </a>
+    <a href="#" class="gift-btn">
+      <img src="images/corporate gifts-button.png" alt="Corporate">
+      <span>👩🏻‍💻ᝰ.ᐟCorporate👩🏻‍💻ᝰ.ᐟ</span>
+    </a>
+  </div>
+
+  <div class="about-us" id="about-us">
+    <h2>🌿 Meet the Founders 🌿</h2>
+    <div class="founders">
+      <div class="founder">
+        <img src="images/saloni.png.jpg" alt="Saloni Khanduri">
+        <h3>Saloni Khanduri</h3>
+        <p>🌻Front End Developer🌻</p>
+        <p>Loves aesthetic and an absolute pink-aholic(she fought for this website to be pink)
+        and is probably the one to use this website the most for getting gifts</p> 
+      </div>
+      <div class="founder">
+        <img src="images/arpita.png.jpg" alt="Arpita Koli">
+        <h3>Arpita Koli</h3>
+        <p>🦖Back End Developer🦖</p>
+        <p>Originator of the idea and is addicted to organising. Also the reason this website is green(bro hates pink D:)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Petals & Leaves Layer -->
+  <script>
+    const numElements = 30;
+    const colors = ['#ffc0cb', '#556b2f']; // pink petals & olive leaves
+    const shapes = ['50% 70% 50% 70%', '50% 50% 50% 50%']; // rounded petals & leaves
+
+    for (let i = 0; i < numElements; i++) {
+      const petal = document.createElement("div");
+      petal.classList.add("petal");
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.width = 15 + Math.random() * 15 + "px";
+      petal.style.height = 15 + Math.random() * 15 + "px";
+      petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+      petal.style.borderRadius = shapes[Math.floor(Math.random() * shapes.length)];
+      petal.style.animationDuration = 5 + Math.random() * 5 + "s";
+      petal.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(petal);
+    }
+
+    // Fade-in animation for About Us
+    const aboutSection = document.getElementById('about-us');
+    window.addEventListener('scroll', () => {
+      const rect = aboutSection.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 50){
+        aboutSection.classList.add('visible');
+      }
+    });
+  </script>
 </body>
 </html>
